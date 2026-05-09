@@ -2,7 +2,20 @@
 #include "utils.h"
 #include "colors.h"
 using namespace std;
+bool check(int &row, int &col, char board[4][4])
+{
+    if (row < 0  row > 3  col < 0 || col > 3) {
+        cout << "Outside the game area";
+        return false;
+    }
 
+    if (board[row][col] != ' ') {
+        cout << "This position is already occupied";
+        return false;
+    }
+
+    return true;
+}
 
 bool chckWin(char board[4][4] ,char player) {
     for(int i = 0 ; i < 4 ; i++) {
