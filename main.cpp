@@ -42,7 +42,7 @@ void main_menu(){
 void XO() {
     int press=-1;
     while(press!=0) {
-
+        GameOver();
         cout <<"Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ";
         cin >> press;
     }

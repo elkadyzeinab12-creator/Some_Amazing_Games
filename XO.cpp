@@ -4,12 +4,12 @@
 using namespace std;
 bool check(int &row, int &col, char board[4][4])
 {
-    if (row < 0  row > 3  col < 0 || col > 3) {
+    if (row < 0 || row > 3 || col < 0 || col > 3) {
         cout << "Outside the game area";
         return false;
     }
 
-    if (board[row][col] != ' ') {
+    if (board[row][col] != '-') {
         cout << "This position is already occupied";
         return false;
     }
@@ -17,7 +17,7 @@ bool check(int &row, int &col, char board[4][4])
     return true;
 }
 
-bool chckWin(char board[4][4] ,char player) {
+bool checkWin(char player ,char board[4][4]) {
     for(int i = 0 ; i < 4 ; i++) {
         if(board[i][0] == player &&
             board[i][1] == player &&
@@ -56,7 +56,7 @@ bool checkDraw(char board[4][4]) {
     return true;
 }
 
-void game() {
+void GameOver() {
     char boardgame[4][4];
 	cout << "Enter the name of player 1: \n";
 	string player1;
@@ -71,7 +71,8 @@ void game() {
     cout << "The rules of the game are simple:\n";
 	cout << "1. The game is played on a 4x4 grid.\n";
 	cout << "2. Each player takes turns to place their symbol (X or O) on the grid.\n";
-	cout << "3. The first player to get 4 of their symbols in a row (horizontally, vertically, or diagonally) wins the game.\n";
+	cout << "3. The first player to get 4 of their symbols in a row as follows:\n "<<
+         "(horizontally, vertically, or diagonally) wins the game.\n";
 	cout << "4. If all the cells are filled and no player has 4 in a row, the game is a draw.\n";
 	cout << "Let's start the game!\n";
     cout << "========================================================================================================================\n";
@@ -148,11 +149,11 @@ void game() {
                 }
                 cout << endl;
             }
-            if (bool checkwin(boardgame, player1) == 1) {
+            if (checkWin(y,boardgame)) {
                 cout << player1 << "is the winner";
                 break;
             }
-            else if (bool checkDraw( boardgame)==1) {
+            if (checkDraw( boardgame)==1) {
                 cout << "it's draw!";
                 break;
             }
@@ -192,11 +193,11 @@ void game() {
                 cout << endl;
             }
 
-            if (bool checkwin(boardgame, player2) == 1) {
+            if (checkWin(d,boardgame)) {
                 cout << player2 << "is the winner";
                 break;
             }
-            else if (bool checkDraw(boardgame)==1) {
+             if (checkDraw(boardgame)) {
                 cout << "it's draw!";
                 break;
             }
