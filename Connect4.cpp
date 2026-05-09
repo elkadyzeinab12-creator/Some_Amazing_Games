@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//-----------------CLEAR BOARD-----------------------
 void initialVal(char board[7][7]) {
     for (int i = 0; i < 7; i++) {
         for (int j = 0; j < 7; j++) {
@@ -14,6 +15,7 @@ void initialVal(char board[7][7]) {
     }
 }
 
+//------------------PRINT BOARD-------------------------
 void printBoard(char board[7][7]) {
     cout << "1 + 2 + 3 + 4 + 5 + 6 + 7" << '\n';
     for (int i = 0; i < 7; i++) {
@@ -26,6 +28,8 @@ void printBoard(char board[7][7]) {
     cout << '\n';
 }
 
+//--------------------CHECK CELL-------------------------
+//WHAT IS THE FIRST EMPTY CELL ?
 bool checkCell(char board[7][7], char c, int col) {
     for (int i = 6; i >= 0; i--) {
         if (board[i][col] == ' ') {
@@ -36,14 +40,15 @@ bool checkCell(char board[7][7], char c, int col) {
     return false;
 }
 
+//----------------------CHECK WIN--------------------------
 bool CheckWin(char board[7][7]) {
     //horizontal
     for (int i = 0; i < 7; i++) {
         for (int j = 0; j < 4; j++) {
             if (board[i][j] != ' ' &&
                 board[i][j] == board[i][j + 1] &&
-                board[i][j + 1] == board[i][j + 2] &&
-                board[i][j + 2] == board[i][j + 3])
+                board[i][j] == board[i][j + 2] &&
+                board[i][j] == board[i][j + 3])
                 return true;
         }
     }
@@ -52,8 +57,8 @@ bool CheckWin(char board[7][7]) {
         for (int i = 0; i < 4; i++) {
             if (board[i][j] != ' ' &&
                 board[i][j] == board[i + 1][j] &&
-                board[i + 1][j] == board[i + 2][j] &&
-                board[i + 2][j] == board[i + 3][j])
+                board[i][j] == board[i + 2][j] &&
+                board[i][j] == board[i + 3][j])
                 return true;
         }
     }
@@ -63,35 +68,34 @@ bool CheckWin(char board[7][7]) {
     return false;
 }
 
+//-----------------------------PLAY GAME---------------------------------
 void playGame(char board[7][7]) {
     char currentPlayer, p1, p2;
-    int currentCol, ColIdx, turn = 1, ward = 0;
-    bool run = true;
+    int currentCol, ColIdx, ward = 0;
     cout << "\n-------------------< Start Game >-------------------\n";
     initialVal(board);
     cout << "Player 1, choose your symbol (X or O): ";
     p1 = GetSymbol();
     p2 = (p1 == 'x' ? 'o' : 'x');
-    cout << "Player 1 : ( " << p1 << " )\n" << "Player 2 : ( " << p2 << " )\n";
+    cout << "Player 1 : ( " << p1 << " )            " << "Player 2 : ( " << p2 << " )\n";
     printBoard(board);
-    while (run) {
-        cout << "Enter Symbol :";
-        char expectedSymbol = (turn == 1 ? p1 : p2);
-        //check valid symbol
-        while (true) {
-            currentPlayer = GetSymbol();
-            if (currentPlayer == expectedSymbol)
-                break;
-            else
-                cout << "Wrong symbol! It's Player " << "Enter (" << expectedSymbol << "): ";
-        }
+    currentPlayer = p1;
+    while (true) {
+        cout << "Current Player ( " << currentPlayer << " )\n";
         cout << "Enter Colum (1 - 7):";
         //check valid col
-        while (cin >> currentCol) {
+        while (true) {
+            if (!(cin >> currentCol)) {//if user enter anything another numbers
+                cin.clear();
+                cin.ignore(100, '\n');
+                cout << "Invalid input , Try again : \n";
+                continue;
+            }
+            cin.ignore(100, '\n');//it's a protective way to avoid errors if user enter more than one char or num
             ColIdx = currentCol - 1;
             if (currentCol > 7 || currentCol < 1) {
                 cout << "Invalid input , Try again : \n";
-            } else if (!checkCell(board, currentPlayer, ColIdx)) {
+            } else if (!checkCell(board, currentPlayer, ColIdx)) {//check what is the nearest cell is empty in colum
                 cout << "Wrong ! try again :\n";
             } else {
                 ward++;
@@ -103,31 +107,18 @@ void playGame(char board[7][7]) {
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
-            cout << "---------<  Player (" << turn << ") win   >--------\n";
-            run = false;
+            cout << "--------------<  Player (" << currentPlayer << ") win   >--------------\n";
+            break;
         }
-        if (ward == 49) {
+        if (ward == 49) {//if we reach to 49 turn and none win that's mean draw
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
             cout << "-------------------<    Draw    >----------------\n";
-            run = false;
+            break;
         }
-        turn = (turn == 2 ? 1 : 2);
+        currentPlayer = (currentPlayer == p1 ? p2 : p1);//take turns between user automatically
     }
 }
 
-bool check(int &row, int &col, char board[7][7]){
-
-    if (row < 0 || row > 6 || col < 0 || col > 6) {
-        cout << "Outside the game area";
-        return false;
-    }
-
-    if (board[row][col] != ' ') {
-        cout << "This position is already occupied";
-        return false;
-    }
-
-    return true;
-}
+//---------------------------------------FINISH OvO-----------------------------------------------

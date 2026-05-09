@@ -6,18 +6,21 @@ using namespace std;
 
 char GetSymbol() {
     char currentPlayer;
-    while(true) {
+    while (true) {
         if (!(cin >> currentPlayer)) {
             cin.clear();
-            cin.ignore(100,'\n');
+            cin.ignore(100, '\n');
         }
-        currentPlayer=tolower(currentPlayer);
-        if (currentPlayer=='x'||currentPlayer=='o') {
+        cin.ignore(100,'\n');//if user enter more than one char to avoid crash
+        currentPlayer = tolower(currentPlayer);
+        if (currentPlayer == 'x' || currentPlayer == 'o') {
             break;
         }
+        cout << red << "Invalid Input ! Please Try Again :\n" << RESET;
     }
     return currentPlayer;
 }
+
 int get_int_input(string prompt) {
     int value;
     string line;
