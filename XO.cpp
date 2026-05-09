@@ -1,16 +1,21 @@
 #include <bits/stdc++.h>
 #include "utils.h"
 #include "colors.h"
+#define PURPLE "\033[35m"
+#define CYAN   "\033[36m"
+#define RED    "\033[1;31m"
+#define RESET  "\033[0m"
 using namespace std;
+
 bool check(int &row, int &col, char board[4][4])
 {
     if (row < 0 || row > 3 || col < 0 || col > 3) {
-        cout << "Outside the game area";
+        cout<<RED<< "Outside the game area!\n"<<RESET;
         return false;
     }
 
     if (board[row][col] != '-') {
-        cout << "This position is already occupied";
+        cout<<RED<< "This position is already occupied.\n"<<RESET;
         return false;
     }
 
@@ -65,7 +70,7 @@ void GameOver() {
 	string player2;
 	cin >> player2;
     cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
-	cout << "Welcome " << player1 << " and " << player2 << " to the BROAD GAME\n";
+	cout << "Welcome " <<" "<<player1<<" "<< " and "<<" "<< player2<<" "<< " to the BROAD GAME\n";
 	cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
     cout << "========================================================================================================================\n";
     cout << "The rules of the game are simple:\n";
@@ -90,7 +95,7 @@ void GameOver() {
         }
         cout << endl;
         if (i != 3)
-            cout << "----------------" << endl;
+            cout << "----------------\n " ;
 
     }
     char y, d;
@@ -104,31 +109,31 @@ void GameOver() {
         cin >> d;
 
         if (!((y == 'X' || y == 'O' || y == 'x' || y == 'o') && (d == 'X' || d == 'O' || d == 'x' || d == 'o'))) {
-            cout << "wrong input";
-            cout << "please try again\n";
+            cout<<RED<< "wrong input!\n"<<RESET;
+            cout<<RED<<"please try again.\n"<<RESET;
             cout << "===============================\n";
         }
         else if (tolower(y) ==tolower(d)) {
-            cout << "the players can't choose the same symbols\n";
-            cout << "please try again\n";
+            cout<<RED<< "the players can't choose the same symbols.\n"<<RESET;
+            cout<<RED<< "please try again.\n"<<RESET;
             cout << "===============================\n";
         }
         else
             break;
     }
-        cout << "=================================";
+        cout << "=================================\n";
 
          while(true) {
             int row1, col1;
             while (true) {
                 cout << player1 << " Enter row and column numbers : \n";
                 cout << "_________________________________________\n";
-                cout << "Enter row number: ";
+                cout << "Enter row number: \n ";
                 cin >> row1;
-                cout << "Enter column number: ";
+                cout << "Enter column number: \n";
                 cin >> col1;
                 if (!check(row1, col1, boardgame)) {
-                    cout << "please try again!\n";
+                    cout<<RED<< "please try again.\n"<<RESET;
                     cout << "=================================\n";
                 }
                 else
@@ -145,16 +150,24 @@ void GameOver() {
             }
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    cout << boardgame[i][j] << " ";
+                    if (boardgame[i][j] == 'X')
+                        cout << CYAN << 'X' << RESET << " ";
+
+                    else if (boardgame[i][j] == 'O')
+                        cout << PURPLE << 'O' << RESET << " ";
+
+                    else
+                        cout << boardgame[i][j] << " ";
                 }
-                cout << endl;
+                cout << " \n";
             }
             if (checkWin(y,boardgame)) {
-                cout << player1 << "is the winner";
+                cout << player1<<" "<< "is the winner\n";
+                cout<<RED<<"Good try,"<<player2<<"! You lost this round.\n"<<RESET;
                 break;
             }
             if (checkDraw( boardgame)==1) {
-                cout << "it's draw!";
+                cout<<RED<< "it's draw! there is no winner."<<RESET;
                 break;
             }
 
@@ -162,12 +175,12 @@ void GameOver() {
             while (true) {
                 cout << player2 << " Enter row and column numbers : \n";
                 cout << "_________________________________________\n";
-                cout << "Enter row number: ";
+                cout << "Enter row number: \n";
                 cin >> row2;
-                cout << "Enter column number: ";
+                cout << "Enter column number: \n";
                 cin >> col2;
                 if (!check(row2, col2, boardgame)) {
-                    cout << "please try again!\n";
+                    cout<<RED<< "please try again.\n"<<RESET;
                     cout << "=================================\n";
                 }
                 else
@@ -188,17 +201,26 @@ void GameOver() {
 
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    cout << boardgame[i][j] << " ";
+                    if (boardgame[i][j] == 'X')
+                        cout << CYAN << 'X' << RESET << " ";
+
+                    else if (boardgame[i][j] == 'O')
+                        cout << PURPLE << 'O' << RESET << " ";
+
+                    else
+                        cout << boardgame[i][j] << " ";
                 }
-                cout << endl;
+                cout <<" \n ";
             }
 
             if (checkWin(d,boardgame)) {
-                cout << player2 << "is the winner";
+                cout << player2 << "is the winner\n";
+                cout<<RED<<"Good try,"<<player1<<"! You lost this round.\n"<<RESET;
+
                 break;
             }
              if (checkDraw(boardgame)) {
-                cout << "it's draw!";
+                cout<<RED<< "it's draw! there is no winner."<<RESET;
                 break;
             }
 
