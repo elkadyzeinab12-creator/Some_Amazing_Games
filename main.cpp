@@ -36,15 +36,13 @@ void main_menu(){
     cout<<"Main Menu:\n";
     cout<<"1. XO Game\n"<<"2. Connect4 Game\n"<<"0. Exit\n";
     cout<<"---------------------------------------------\n"<<RESET;
-    cout<<"Select A Game To Start The Excitation Or press 0 To Exit: ";
 }
 
 void XO() {
     int press=-1;
     while(press!=0) {
         GameOver();
-        cout <<"Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ";
-        cin >> press;
+        press=get_int_input("Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ");
     }
 
 }
@@ -52,28 +50,27 @@ void XO() {
 void Connect4() {
     int press=-1;
     while(press!=0) {
-
-        cout <<"Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ";
-        cin >> press;
+          char board[7][7];
+          playGame(board);
+        press=get_int_input("Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ");
     }
 }
 
 void main_loop() {
     int choice = -1;
+
     while (choice != 0) {
         main_menu();
-        cin>>choice;
+        choice=get_int_input("Select A Game To Start The Excitation Or press 0 To Exit: ");
         switch(choice) {
                 case 1:
                 //xo game
                 XO();
                 break;
-                case 2: {//Conncet4
-                    char board[7][7];
-                    playGame(board);
-                    Connect4();
-                    break;
-                }
+                case 2:
+                //Conncet4
+                Connect4();
+                break;
                 case 0:
                 break;
                 default:
@@ -83,4 +80,3 @@ void main_loop() {
     cout<<PURPLE<<"WE WISH YOU ENJOYED OUR GAMES!\n      LET ME SEE YOU AGAIN\n";
 
 }
-

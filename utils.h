@@ -5,4 +5,6 @@
 #include "colors.h"
 
 char GetSymbol ();
+int get_int_input(std::string prompt);
+
 #endif //SOME_AMAZING_GAMES_UTILS_H

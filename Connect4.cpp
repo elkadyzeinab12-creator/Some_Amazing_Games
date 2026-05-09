@@ -116,12 +116,9 @@ void playGame(char board[7][7]) {
         turn = (turn == 2 ? 1 : 2);
     }
 }
-#include <bits/stdc++.h>
-#include "utils.h"
-#include "colors.h"
 
-bool check(int &row, int &col, char board[7][7])
-{
+bool check(int &row, int &col, char board[7][7]){
+
     if (row < 0 || row > 6 || col < 0 || col > 6) {
         cout << "Outside the game area";
         return false;
