@@ -4,12 +4,13 @@
 #include "utils.h"
 #include "colors.h"
 
-bool check_cell(char arr[7][7],int column, int row);
+bool CheckWin(char arr[7][7]);
 
-bool winner(char arr[7][7]);
+void initialVal(char board[7][7]);
 
-bool grid(char arr[7][7]);
+void printBoard(char board[7][7]);
 
-void startGaming();
+bool checkCell(char board[7][7], char c, int col);
 
+void playGame(char board[7][7]);
 #endif //SOME_AMAZING_GAMES_CONNECT4_H

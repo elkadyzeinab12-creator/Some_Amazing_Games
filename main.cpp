@@ -68,10 +68,12 @@ void main_loop() {
                 //xo game
                 XO();
                 break;
-                case 2:
-                //connect4 game
-                Connect4();
-                break;
+                case 2: {//Conncet4
+                    char board[7][7];
+                    playGame(board);
+                    Connect4();
+                    break;
+                }
                 case 0:
                 break;
                 default:
@@ -79,5 +81,6 @@ void main_loop() {
         }
     }
     cout<<PURPLE<<"WE WISH YOU ENJOYED OUR GAMES!\n      LET ME SEE YOU AGAIN\n";
+
 }
 
