@@ -211,7 +211,7 @@ initializeBoard(boardgame);
         selection(y,d,player1,player2);
 
 
-        while (true) {
+        while (true)  {
 
             int row1, col1;
     rowcol(row1,col1,player1,boardgame);
