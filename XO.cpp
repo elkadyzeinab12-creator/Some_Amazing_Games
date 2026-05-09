@@ -180,7 +180,7 @@ bool winlosdraw(string player3,string player4,char bgame[4][4],char p) {
 
 
 
-    void GameOx() {
+    void GameOver() {
 
         cout << "Enter the name of player 1: \n";
         string player1;
