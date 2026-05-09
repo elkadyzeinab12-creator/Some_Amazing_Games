@@ -10,4 +10,6 @@ bool winner(char arr[7][7]);
 
 bool grid(char arr[7][7]);
 
+void startGaming();
+
 #endif //SOME_AMAZING_GAMES_CONNECT4_H

@@ -25,7 +25,7 @@ int main() {
     SetConsoleMode(hOut, dwMode);
 #endif
     cout<<BLUE<<"==========================================================\n";
-    cout << "Welcome to Our Amazing Games!\n" << RESET;
+    cout << "Welcome to Our Amazing Games\n" << RESET;
 
     main_loop();
 
@@ -79,6 +79,5 @@ void main_loop() {
         }
     }
     cout<<PURPLE<<"WE WISH YOU ENJOYED OUR GAMES!\n      LET ME SEE YOU AGAIN\n";
-
 }
 

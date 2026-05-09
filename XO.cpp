@@ -1,22 +1,18 @@
 #include <bits/stdc++.h>
 #include "utils.h"
 #include "colors.h"
-#define PURPLE "\033[35m"
-#define MAGENTAd "\033[35m"
-#define CYAN   "\033[36m"
-#define RED    "\033[1;31m"
-#define RESET  "\033[0m"
+
 using namespace std;
 
 bool check(int &row, int &col, char board[4][4])
 {
     if (row < 0 || row > 3 || col < 0 || col > 3) {
-        cout<<RED<< "Outside the game area!\n"<<RESET;
+        cout<<red<< "Outside the game area!\n"<<RESET;
         return false;
     }
 
     if (board[row][col] != '-') {
-        cout<<RED<< "This position is already occupied.\n"<<RESET;
+        cout<<red<< "This position is already occupied.\n"<<RESET;
         return false;
     }
 
@@ -61,16 +57,17 @@ bool checkDraw(char board[4][4]) {
     }
     return true;
 }
+
 void printBoard(char bgame[4][4]) {
     for (int i = 0; i < 4; i++) {
 
         for (int j = 0; j < 4; j++) {
 
-            if (bgame[i][j] == 'X')
-                cout << CYAN << 'X' << RESET << " ";
+            if (bgame[i][j] == 'x')
+                cout << cyan << "X" << RESET << " ";
 
-            else if (bgame[i][j] == 'O')
-                cout << PURPLE << 'O' << RESET << " ";
+            else if (bgame[i][j] == 'o')
+                cout << PURPLE << "O" << RESET << " ";
 
             else
                 cout << bgame[i][j] << " ";
@@ -79,7 +76,8 @@ void printBoard(char bgame[4][4]) {
         cout << "\n";
     }
 }
-void rowcol(int &r, int &c, string player,char h[4][4]) {
+
+void row_col(int &r, int &c, string player,char h[4][4]) {
     while (true) {
         cout << player << " Enter row and column numbers : \n";
         cout << "_________________________________________\n";
@@ -88,7 +86,7 @@ void rowcol(int &r, int &c, string player,char h[4][4]) {
         cout << "Enter column number: \n";
         cin >> c;
         if (!check(r, c, h)) {
-            cout<<RED<< "please try again.\n"<<RESET;
+            cout<<red<< "please try again.\n"<<RESET;
             cout << "=================================\n";
         }
         else
@@ -146,13 +144,13 @@ void rowcol(int &r, int &c, string player,char h[4][4]) {
             cin >> d;
 
             if (!((y == 'X' || y == 'O' || y == 'x' || y == 'o') && (d == 'X' || d == 'O' || d == 'x' || d == 'o'))) {
-                cout<<RED<< "wrong input!\n"<<RESET;
-                cout<<RED<<"please try again.\n"<<RESET;
+                cout<<red<< "wrong input!\n"<<RESET;
+                cout<<red<<"please try again.\n"<<RESET;
                 cout << "===============================\n";
             }
             else if (tolower(y) ==tolower(d)) {
-                cout<<RED<< "the players can't choose the same symbols.\n"<<RESET;
-                cout<<RED<< "please try again.\n"<<RESET;
+                cout<<red<< "the players can't choose the same symbols.\n"<<RESET;
+                cout<<red<< "please try again.\n"<<RESET;
                 cout << "===============================\n";
             }
             else
@@ -162,7 +160,7 @@ void rowcol(int &r, int &c, string player,char h[4][4]) {
 
         while (true) {
             int row1, col1;
-    rowcol(row1,col1,player1,boardgame);
+    row_col(row1,col1,player1,boardgame);
             boardgame[row1][col1] = y;
 
 
@@ -173,16 +171,16 @@ void rowcol(int &r, int &c, string player,char h[4][4]) {
                 cout<<MAGENTAd<<"         "<< player1<<" "<< "is the winner\n"<<RESET;
                 cout<<"++++++++++++++++++++++++++++++++++++++++\n";
 
-                cout<<RED<<"Good try,"<<player2<<"! You lost this round.\n"<<RESET;
+                cout<<red<<"Good try,"<<player2<<"! You lost this round.\n"<<RESET;
                 break;
             }
             if (checkDraw( boardgame)) {
-                cout<<RED<< "it's draw! there is no winner."<<RESET;
+                cout<<red<< "it's draw! there is no winner."<<RESET;
                 break;
             }
 
             int row2, col2;
-            rowcol(row2,col2,player2,boardgame);
+            row_col(row2,col2,player2,boardgame);
             boardgame[row2][col2] = d;
 
 
@@ -192,15 +190,15 @@ void rowcol(int &r, int &c, string player,char h[4][4]) {
                 cout<<"++++++++++++++++++++++++++++++++++++++++\n";
                 cout<<MAGENTAd<<"          "<< player2<<" "<< "is the winner\n"<<RESET;
                 cout<<"++++++++++++++++++++++++++++++++++++++++\n";
-                cout<<RED<<"Good try,"<<player1<<"! You lost this round.\n"<<RESET;
+                cout<<red<<"Good try,"<<player1<<"! You lost this round.\n"<<RESET;
 
                 break;
             }
             if (checkDraw(boardgame)) {
-                cout<<RED<< "it's draw! there is no winner."<<RESET;
+                cout<<red<< "it's draw! there is no winner."<<RESET;
                 break;
             }
 
         }
 
-    }
+}

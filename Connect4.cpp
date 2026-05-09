@@ -3,7 +3,6 @@
 #include "utils.h"
 #include "colors.h"
 
-
 using namespace std;
 
 #include <bits/stdc++.h>
