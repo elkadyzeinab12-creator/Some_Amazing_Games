@@ -5,7 +5,7 @@
 #include "colors.h"
 
 bool checkWin(char board[4][4] ,char player);
-bool checkDraw(char board[4][4]);
+bool checkDraw(char bgame[4][4]);
 void GameOver();
 
 #endif //SOME_AMAZING_GAMES_XO_H
