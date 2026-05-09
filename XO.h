@@ -4,4 +4,7 @@
 #include "utils.h"
 #include "colors.h"
 
+bool chckWin(char board[4][4] ,char player);
+bool checkDraw(char board[4][4]);
+
 #endif //SOME_AMAZING_GAMES_XO_H
