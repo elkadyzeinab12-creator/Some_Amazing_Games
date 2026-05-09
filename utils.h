@@ -4,5 +4,5 @@
 #include "utils.h"
 #include "colors.h"
 
-
+char GetSymbol ();
 #endif //SOME_AMAZING_GAMES_UTILS_H
