@@ -39,7 +39,7 @@ void selection(char &p,char &e,string player3,string player4) {
         cin >> e;
 
         if (!((p == 'X' || p == 'O' || p == 'x' || p == 'o') && (e == 'X' || e == 'O' || e == 'x' || e == 'o'))) {
-            cout<<RED<< "wrong input !\n"<<RESET;
+            cout<<RED<< "wrong input!\n"<<RESET;
             cout<<RED<<"please try again.\n"<<RESET;
             cout << "===============================\n";
         }
