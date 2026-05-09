@@ -28,7 +28,7 @@ void initializeBoard(char bgame[4][4]) {
 
 
 }
-void selection(char &p,char &e,string player3,string player4) {
+void selection(char &p,char &e,string player3,string player4)  {
     while (true) {
         cout << ":::::::::::::::::\n";
         cout << "select X,x or O,o \n ";
