@@ -11,10 +11,10 @@ void initializeBoard(char game_board[4][4]) {
             game_board[i][j] = '-';
         }
     }
-cout<<YELLOW"| ";
+cout << YELLOW << "| ";
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            cout <<RESET<< game_board[i][j] <<YELLOW " | ";
+            cout << RESET << game_board[i][j] << YELLOW << " | ";
         }
         cout << "\n";
         if (i != 3)
@@ -25,9 +25,9 @@ cout<<YELLOW"| ";
 //the loop of the game starts
 void selection(char &p, char &e, string player3, string player4) {
     while (true) {
-        cout << GREEN":::::::::::::::::\n"<<RESET;
+        cout << GREEN<<":::::::::::::::::\n" << RESET;
         cout << "select X or O \n";
-        cout <<GREEN ":::::::::::::::::\n"<<RESET;
+        cout << GREEN <<":::::::::::::::::\n" << RESET;
         cout << player3 << ":\n";
         cin >> p;
         cout << player4 << ":\n";
@@ -69,10 +69,11 @@ bool checkAccuracy(int row, int col, char game_board[4][4]) {
 //rows and columns function to allows user select the position of the cell
 void set_position(int &row, int &col, string player, char game_board[4][4]) {
     while (true) {
+        cout << GREEN  << player << "'s turn\n" << RESET;
         cout << player << " Enter row and column numbers : \n";
         cout << "_________________________________________\n";
-        row=get_int_input("Enter row number: ");
-        col=get_int_input("Enter column number: ");
+        row=get_int_input( "Enter the row number: " );
+        col=get_int_input( " Enter the column number: " );
 
         if (!checkAccuracy(row, col, game_board)) {
             cout << red << "please try again.\n" << RESET;
@@ -84,11 +85,11 @@ void set_position(int &row, int &col, string player, char game_board[4][4]) {
 
 //the most sensitive part _printing the nice board_
 void printBoard(char game_board[4][4]) {
-    cout <<YELLOW "-----------------\n"<<RESET;
+    cout << YELLOW << "-----------------\n";
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            cout <<YELLOW "| "<<RESET;
+            cout << YELLOW <<"| " << RESET;
             if (game_board[i][j] == 'X')
                 cout << cyan << 'X' << RESET << " ";
 
@@ -99,8 +100,8 @@ void printBoard(char game_board[4][4]) {
                 cout << game_board[i][j] << " ";
         }
 
-        cout << YELLOW"|\n";
-        cout << "-----------------\n"<<RESET;
+        cout << YELLOW <<"|\n";
+        cout << "-----------------\n" << RESET;
     }
 }
 
@@ -149,7 +150,7 @@ bool checkDraw(char game_board[4][4]) {
 bool win_lose_draw(string player3, string player4, char game_board[4][4], char p) {
     if (checkWin(p, game_board)) {
         cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
-        cout << BG << "            " << player4 << " " << "IS THE WINNER \n" << RESET;
+        cout << BG << "                    " << player4 << " " << "IS THE WINNER \n" << RESET;
         cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
         cout << YELLOW << "Good try," << player3 << "! You lost this round.\n" << RESET;
 
@@ -170,10 +171,10 @@ void GameOver() {
     cout << "Enter the name of player 2: \n";
     string player2;
     cin >> player2;
-    cout <<GREEN "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
-    cout << "Welcome " << " " << player1 << " " << " and " << " " << player2 << " " << " to the BROAD GAME\n";
-    cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"<<RESET;
-    cout <<"========================================================================================================\n";
+    cout << GREEN <<"::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+    cout << "Welcome " << " " << player1 << " " << " & " << " " << player2 << " " << " to the BROAD GAME\n";
+    cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n" << RESET;
+    cout << "========================================================================================================\n";
     cout << "The rules of the game are simple:\n";
     cout << "1. The game is played on a 4x4 grid.\n";
     cout << "2. Each player takes turns to place their symbol (X or O) on the grid.\n";
@@ -181,11 +182,10 @@ void GameOver() {
             "(horizontally, vertically, or diagonally) wins the game.\n";
     cout << "4. If all the cells are filled and no player has 4 in a row, the game is a draw.\n";
     cout << "Let's start the game!\n";
-    cout <<
-            "=======================================================================================================\n";
-    cout <<GREEN "::::::::::::::::::\n";
+    cout << "=======================================================================================================\n";
+    cout << GREEN <<"::::::::::::::::::\n";
     cout << "BOARD GAME\n";
-    cout << "::::::::::::::::::\n"<<RESET;
+    cout << "::::::::::::::::::\n" << RESET;
 
     char boardgame[4][4];
     initializeBoard(boardgame);
@@ -195,6 +195,9 @@ void GameOver() {
 
 
     while (true) {
+
+        //player1 section
+
         int row1, col1;
         set_position(row1, col1, player1, boardgame);
         boardgame[row1][col1] = y;
@@ -204,6 +207,7 @@ void GameOver() {
         if (!win_lose_draw(player2, player1, boardgame, y))
             break;
 
+          //player2 section
 
         int row2, col2;
         set_position(row2, col2, player2, boardgame);
