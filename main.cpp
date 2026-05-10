@@ -51,7 +51,7 @@ void main_menu() {
     cout << BB << "==========================================================\n";
     cout << "Main Menu:\n";
     cout << "1. XO Game\n" // done
-    << "2. Connect4 Game\n" // still in working on
+    << "2. Connect4 Game\n" // still working on
     << "0. Exit\n";
     cout << "---------------------------------------------\n" << RESET;
 }

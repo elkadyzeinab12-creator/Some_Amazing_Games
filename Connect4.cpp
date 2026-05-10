@@ -66,9 +66,49 @@ bool CheckWin(char board[7][7]) {
                 return true;
         }
     }
-    // / digonal
-
     // \ digonal
+    for (int k = 3; k <= 9; k++) {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (i + j == k) {
+                    int ptr = k - 3;
+                    for (int l = k - 1; l >= 0; l--) {
+                        if (board[k][ptr] == board[l][ptr + 1] &&
+                            board[k][ptr] == board[l - 1][ptr + 2] &&
+                            board[k][ptr] == board[l - 2][ptr + 3] &&
+                            board[k][ptr] != ' ')
+                            return true;
+                        if (l - 2 <= 0 || ptr + 3 >= 9)
+                            break;
+                        ptr++;
+                    }
+                }
+            }
+        }
+    }
+
+    // / digonal
+    for (int k = 0; k <= 3; k++) {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (abs(i - j) == k) {
+                    int g = max(i, j), s = min(i, j);
+
+                    if (board[g][s] != ' ' &&
+                        board[g][s] == board[g + 1][s + 1] &&
+                        board[g][s] == board[g + 2][s + 2] &&
+                        board[g][s] == board[g + 3][s + 3])
+                        return true;
+                    if (board[s][g] != ' ' &&
+                        board[s][g] == board[s + 1][g + 1] &&
+                        board[s][g] == board[s + 2][g + 2] &&
+                        board[s][g] == board[s + 3][g + 3])
+                        return true;
+                }
+            }
+        }
+    }
+
     return false;
 }
 
