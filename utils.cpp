@@ -1,5 +1,4 @@
 #include "utils.h"
-#include"Connect4.h"
 #include <bits/stdc++.h>
 #include "colors.h"
 using namespace std;
@@ -12,8 +11,8 @@ char GetSymbol() {
             cin.ignore(100, '\n');
         }
         cin.ignore(100,'\n');//if user enter more than one char to avoid crash
-        currentPlayer = tolower(currentPlayer);
-        if (currentPlayer == 'x' || currentPlayer == 'o') {
+        currentPlayer = toupper(currentPlayer);
+        if (currentPlayer == 'X' || currentPlayer == 'O') {
             break;
         }
         cout << red << "Invalid Input ! Please Try Again :\n" << RESET;
@@ -25,9 +24,13 @@ int get_int_input(string prompt) {
     int value;
     while (true) {
         cout << prompt;
-        if (cin >> value) return value;
-        cout<<red<<"Invalid input, please try Enter a number\n"<<RESET;
+        if (cin >> value) {
+            cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
+            return value;
+        }
+        cout<<red<<"Invalid Input, Please Try Enter An Integer Number\n"<<RESET;
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
     }
 }

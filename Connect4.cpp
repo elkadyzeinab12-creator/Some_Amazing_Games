@@ -22,7 +22,7 @@ void printBoard(char board[7][7]) {
         cout << ' ';
         for (int j = 0; j < 7; j++) {
             if (board[i][j] != ' ') {
-                cout << (board[i][j] == 'x' ? LIGHT_YELLOW"X" : PURPLE "O") << RESET;
+                cout << (board[i][j] == 'X' ? LIGHT_YELLOW"X" : PURPLE "O") << RESET;
             } else cout << board[i][j];
             if (j != 6)cout << " | ";
         }
@@ -122,22 +122,15 @@ void playGame(char board[7][7]) {
     cout << "Player 1, choose your symbol (X or O): ";
     p1 = GetSymbol();
     p2 = (p1 == 'X' ? 'O' : 'X');
-    cout << "Player 1 : ( " << p1 << " )            " << "Player 2 : ( " << p2 << " )\n";
+    cout << "Player 1 : ( " << p1 << " )            " << "Player 2 : ( " << p2 << " )\n\n";
     printBoard(board);
     currentPlayer = p1;
     while (true) {
-        cout << "Current Player ( " << currentPlayer << " )\n";
-        cout << "Enter Colum (1 - 7):";
+        cout << GREEN "Current Player ( " << currentPlayer << " )\n"<<RESET;
         //check valid col
         while (true) {
-            if (!(cin >> currentCol)) {
-                //if user enter anything another numbers
-                cin.clear();
-                cin.ignore(100, '\n');
-                cout << red "Invalid Input , Try Again : \n" << RESET;
-                continue;
-            }
-            cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
+            currentCol=get_int_input("Enter Colum (1 - 7):");  //if user enter anything another numbers
+
             ColIdx = currentCol - 1;
             if (currentCol > 7 || currentCol < 1) {
                 cout << red "Invalid Input , Try Again : \n" << RESET;
@@ -163,7 +156,7 @@ void playGame(char board[7][7]) {
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
-            cout << red "-------------------<    DRAW    >----------------\n" << RESET;
+            cout << red "-------------------<     DRAW     >----------------\n" << RESET;
             cout << "-------------------------------------------------\n";
             break;
         }
