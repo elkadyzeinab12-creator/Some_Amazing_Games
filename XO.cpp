@@ -164,7 +164,10 @@ bool win_lose_draw(string player3, string player4, char game_board[4][4], char p
         return false;
     }
     if (checkDraw(game_board)) {
-        cout << red << "Opps, It's Draw! There Is No Winner." << RESET;
+        cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+        cout << red << "           Opps, It's Draw!\n       "
+                       "        There Is No Winner.\n" << RESET;
+        cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
         return false;
     }
     return true;
@@ -178,21 +181,19 @@ void GameOver() {
     cout << "Enter the name of player 2: \n";
     string player2;
     cin >> player2;
-    cout << GREEN <<"::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
-    cout << "Welcome " << " " << player1 << " " << " & " << " " << player2 << " " << " to the BROAD GAME\n";
-    cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n" << RESET;
-    cout << "========================================================================================================\n";
-    cout << "The rules of the game are simple:\n";
-    cout << "1. The game is played on a 4x4 grid.\n";
-    cout << "2. Each player takes turns to place their symbol (X or O) on the grid.\n";
-    cout << "3. The first player to get 4 of their symbols in a row as follows:\n " <<
-            "(horizontally, vertically, or diagonally) wins the game.\n";
-    cout << "4. If all the cells are filled and no player has 4 in a row, the game is a draw.\n";
-    cout << "Let's start the game!\n";
-    cout << "=======================================================================================================\n";
-    cout << GREEN <<"::::::::::::::::::\n";
-    cout << "BOARD GAME\n";
-    cout << "::::::::::::::::::\n\n" << RESET;
+    cout << GREEN <<"::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
+    "Welcome " << " " << player1 << " " << " & " << " " << player2 << " " << " to the BROAD GAME\n"
+    "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n" << RESET
+    "========================================================================================================\n"
+    "The rules of the game are simple:\n1. The game is played on a 4x4 grid.\n"
+    "2. Each player takes turns to place their symbol (X or O) on the grid.\n"
+    "3. The first player to get 4 of their symbols in a row as follows:\n "
+    "(horizontally, vertically, or diagonally) wins the game.\n"
+    "4. If all the cells are filled and no player has 4 in a row, the game is a draw.\n";
+    cout << "Let's start the game!\n"
+    "=======================================================================================================\n";
+    cout << GREEN <<"::::::::::::::::::\n"
+    << "BOARD GAME\n::::::::::::::::::\n\n" << RESET;
 
     char boardgame[4][4];
     initializeBoard(boardgame);
