@@ -5,29 +5,29 @@
 using namespace std;
 
 //initializing board by '-' character
-void initializeBoard(char bgame[4][4]) {
+void initializeBoard(char game_board[4][4]) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            bgame[i][j] = '-';
+            game_board[i][j] = '-';
         }
     }
-
+cout<<YELLOW"| ";
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            cout << bgame[i][j] << " | ";
+            cout <<RESET<< game_board[i][j] <<YELLOW " | ";
         }
         cout << "\n";
         if (i != 3)
-            cout << "----------------\n ";
+            cout << "-----------------\n| ";
     }
 }
 
 //the loop of the game starts
 void selection(char &p, char &e, string player3, string player4) {
     while (true) {
-        cout << ":::::::::::::::::\n";
+        cout << GREEN":::::::::::::::::\n"<<RESET;
         cout << "select X or O \n";
-        cout << ":::::::::::::::::\n";
+        cout <<GREEN ":::::::::::::::::\n"<<RESET;
         cout << player3 << ":\n";
         cin >> p;
         cout << player4 << ":\n";
@@ -52,13 +52,13 @@ void selection(char &p, char &e, string player3, string player4) {
 }
 
 //sara's function to check accuracy and deal with wrong input
-bool checkAccuracy(int row, int col, char bgame[4][4]) {
+bool checkAccuracy(int row, int col, char game_board[4][4]) {
     if (row < 0 || row > 3 || col < 0 || col > 3) {
         cout << red << "Outside the game area!\n" << RESET;
         return false;
     }
 
-    if (bgame[row][col] != '-') {
+    if (game_board[row][col] != '-') {
         cout << red << "This position is already occupied.\n" << RESET;
         return false;
     }
@@ -66,15 +66,15 @@ bool checkAccuracy(int row, int col, char bgame[4][4]) {
     return true;
 }
 
-//rows and columns function to allaws user select the position of the cell
-void rowcol(int &row, int &col, string player, char bgame[4][4]) {
+//rows and columns function to allows user select the position of the cell
+void set_position(int &row, int &col, string player, char game_board[4][4]) {
     while (true) {
         cout << player << " Enter row and column numbers : \n";
         cout << "_________________________________________\n";
         row=get_int_input("Enter row number: ");
         col=get_int_input("Enter column number: ");
 
-        if (!checkAccuracy(row, col, bgame)) {
+        if (!checkAccuracy(row, col, game_board)) {
             cout << red << "please try again.\n" << RESET;
             cout << "=================================\n";
         } else
@@ -83,62 +83,62 @@ void rowcol(int &row, int &col, string player, char bgame[4][4]) {
 }
 
 //the most sensitive part _printing the nice board_
-void printBoard(char bgame[4][4]) {
-    cout << "-----------------\n";
+void printBoard(char game_board[4][4]) {
+    cout <<YELLOW "-----------------\n"<<RESET;
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            cout << "| ";
-            if (bgame[i][j] == 'X')
+            cout <<YELLOW "| "<<RESET;
+            if (game_board[i][j] == 'X')
                 cout << cyan << 'X' << RESET << " ";
 
-            else if (bgame[i][j] == 'O')
+            else if (game_board[i][j] == 'O')
                 cout << LIGHT_PURPLE << 'O' << RESET << " ";
 
             else
-                cout << bgame[i][j] << " ";
+                cout << game_board[i][j] << " ";
         }
 
-        cout << "|\n";
-        cout << "-----------------\n";
+        cout << YELLOW"|\n";
+        cout << "-----------------\n"<<RESET;
     }
 }
 
 //checking who is the winner
-bool checkWin(char player, char bgame[4][4]) {
+bool checkWin(char player, char game_board[4][4]) {
     for (int i = 0; i < 4; i++) {
-        if (bgame[i][0] == player &&
-            bgame[i][1] == player &&
-            bgame[i][2] == player &&
-            bgame[i][3] == player)
+        if (game_board[i][0] == player &&
+            game_board[i][1] == player &&
+            game_board[i][2] == player &&
+            game_board[i][3] == player)
             return true;
     }
     for (int j = 0; j < 4; j++) {
-        if (bgame[0][j] == player &&
-            bgame[1][j] == player &&
-            bgame[2][j] == player &&
-            bgame[3][j] == player)
+        if (game_board[0][j] == player &&
+            game_board[1][j] == player &&
+            game_board[2][j] == player &&
+            game_board[3][j] == player)
             return true;
     }
-    if (bgame[0][0] == player &&
-        bgame[1][1] == player &&
-        bgame[2][2] == player &&
-        bgame[3][3] == player)
+    if (game_board[0][0] == player &&
+        game_board[1][1] == player &&
+        game_board[2][2] == player &&
+        game_board[3][3] == player)
         return true;
 
-    if (bgame[0][3] == player &&
-        bgame[1][2] == player &&
-        bgame[2][1] == player &&
-        bgame[3][0] == player)
+    if (game_board[0][3] == player &&
+        game_board[1][2] == player &&
+        game_board[2][1] == player &&
+        game_board[3][0] == player)
         return true;
     return false;
 }
 
 //checking if there is draw
-bool checkDraw(char bgame[4][4]) {
+bool checkDraw(char game_board[4][4]) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (bgame[i][j] == '-')
+            if (game_board[i][j] == '-')
                 return false;
         }
     }
@@ -146,16 +146,16 @@ bool checkDraw(char bgame[4][4]) {
 }
 
 //display the winner
-bool winlosdraw(string player3, string player4, char bgame[4][4], char p) {
-    if (checkWin(p, bgame)) {
-        cout << "++++++++++++++++++++++++++++++++++++++++\n";
-        cout << MAGENTAd << "          " << player4 << " " << "is the winner\n" << RESET;
-        cout << "++++++++++++++++++++++++++++++++++++++++\n";
-        cout << red << "Good try," << player3 << "! You lost this round.\n" << RESET;
+bool win_lose_draw(string player3, string player4, char game_board[4][4], char p) {
+    if (checkWin(p, game_board)) {
+        cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+        cout << BG << "            " << player4 << " " << "IS THE WINNER \n" << RESET;
+        cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+        cout << YELLOW << "Good try," << player3 << "! You lost this round.\n" << RESET;
 
         return false;
     }
-    if (checkDraw(bgame)) {
+    if (checkDraw(game_board)) {
         cout << red << "Opps, It's Draw! There Is No Winner." << RESET;
         return false;
     }
@@ -170,9 +170,9 @@ void GameOver() {
     cout << "Enter the name of player 2: \n";
     string player2;
     cin >> player2;
-    cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+    cout <<GREEN "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
     cout << "Welcome " << " " << player1 << " " << " and " << " " << player2 << " " << " to the BROAD GAME\n";
-    cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+    cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"<<RESET;
     cout <<"========================================================================================================\n";
     cout << "The rules of the game are simple:\n";
     cout << "1. The game is played on a 4x4 grid.\n";
@@ -183,9 +183,9 @@ void GameOver() {
     cout << "Let's start the game!\n";
     cout <<
             "=======================================================================================================\n";
-    cout << ":::::::::::::\n";
+    cout <<GREEN "::::::::::::::::::\n";
     cout << "BOARD GAME\n";
-    cout << ":::::::::::::\n";
+    cout << "::::::::::::::::::\n"<<RESET;
 
     char boardgame[4][4];
     initializeBoard(boardgame);
@@ -196,22 +196,22 @@ void GameOver() {
 
     while (true) {
         int row1, col1;
-        rowcol(row1, col1, player1, boardgame);
+        set_position(row1, col1, player1, boardgame);
         boardgame[row1][col1] = y;
 
 
         printBoard(boardgame);
-        if (!winlosdraw(player2, player1, boardgame, y))
+        if (!win_lose_draw(player2, player1, boardgame, y))
             break;
 
 
         int row2, col2;
-        rowcol(row2, col2, player2, boardgame);
+        set_position(row2, col2, player2, boardgame);
         boardgame[row2][col2] = d;
 
 
         printBoard(boardgame);
-        if (!winlosdraw(player1, player2, boardgame, d))
+        if (!win_lose_draw(player1, player2, boardgame, d))
             break;
     }
 }
