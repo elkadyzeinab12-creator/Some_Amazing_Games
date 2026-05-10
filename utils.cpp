@@ -23,17 +23,11 @@ char GetSymbol() {
 
 int get_int_input(string prompt) {
     int value;
-    string line;
     while (true) {
         cout << prompt;
-        getline(cin, line);
-        stringstream ss(line);
-        char extra;
-
-        if (ss >> value && !(ss >> extra)) {
-            return value;
-        }
-
-        cout << red << "Invalid input, please try Enter a number\n" << RESET;
+        if (cin >> value) return value;
+        cout<<red<<"Invalid input, please try Enter a number\n"<<RESET;
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }

@@ -10,49 +10,66 @@
 #endif
 using namespace std;
 
-
-void main_menu();
-void main_loop();
-void XO();
-void Connect4();
-
-int main() {
-#ifdef _WIN32
+void colors_organization() {
+    #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
     GetConsoleMode(hOut, &dwMode);
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
 #endif
-    cout<<BLUE<<"==========================================================\n";
+}
+
+
+void main_menu();//done
+
+void main_loop();//done
+
+void XO();//done
+
+void Connect4();//done
+
+
+// the main
+int main() {
+    colors_organization();
+
+    cout << BB << "==========================================================\n";
     cout << "Welcome to Our Amazing Games\n" << RESET;
 
     main_loop();
 
+    cout <<YELLOW<<"\n--------------------------------------------------------------------------------------------------\n"
+        "     < THIS IS THE FIRST VERSION OF THE APPLICATION AND IT WILL BE UPDATED SOON! >        \n"
+    "--------------------------------------------------------------------------------------------------\n";
+
+    return 0;
 }
 
-void main_menu(){
-    cout<<BLUE<<"==========================================================\n";
-    cout<<"Main Menu:\n";
-    cout<<"1. XO Game\n"<<"2. Connect4 Game\n"<<"0. Exit\n";
-    cout<<"---------------------------------------------\n"<<RESET;
+
+void main_menu() {
+    cout << BB << "==========================================================\n";
+    cout << "Main Menu:\n";
+    cout << "1. XO Game\n" // done
+    << "2. Connect4 Game\n" // still in working on
+    << "0. Exit\n";
+    cout << "---------------------------------------------\n" << RESET;
 }
 
 void XO() {
-    int press=-1;
-    while(press!=0) {
+    int press = -1;
+    while (press != 0) {
         GameOver();
-        press=get_int_input("Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ");
+        press = get_int_input("Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ");
     }
-
 }
 
 void Connect4() {
-    int press=-1;
-    while(press!=0) {
-          char board[7][7];
-          playGame(board);
-        press=get_int_input("Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ");
+    int press = -1;
+    while (press != 0) {
+        char board[7][7];
+        playGame(board);
+        press = get_int_input("Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ");
     }
 }
 
@@ -61,22 +78,24 @@ void main_loop() {
 
     while (choice != 0) {
         main_menu();
-        choice=get_int_input("Select A Game To Start The Excitation Or press 0 To Exit: ");
-        switch(choice) {
-                case 1:
+        choice = get_int_input("Select A Game To Start The Excitation Or press 0 To Exit: ");
+        switch (choice) {
+            case 1:
                 //xo game
                 XO();
                 break;
-                case 2:
+            case 2:
                 //Conncet4
                 Connect4();
                 break;
-                case 0:
+            case 0:
                 break;
-                default:
-                cout<<red<<"Invalid Input!\nPlease Enter 1 Or 2 To start Gaming Or Press 0 to terminate\n"<<RESET;
+            default:
+                cout << red << "Invalid Input!\nPlease Enter 1 Or 2 To start Gaming Or Press 0 to terminate\n" << RESET;
         }
     }
-    cout<<PURPLE<<"WE WISH YOU ENJOYED OUR GAMES!\n      LET ME SEE YOU AGAIN\n";
+    cout << MAGENTAd << "                  WE WISH YOU ENJOYED OUR GAMES!\n     "
+                        "                  LET ME SEE YOU AGAIN\n";
 
 }
+/*____________________________________< the end >______________________________________*/

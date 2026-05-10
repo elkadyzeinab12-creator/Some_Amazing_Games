@@ -26,10 +26,10 @@ void initializeBoard(char bgame[4][4]) {
 void selection(char &p, char &e, string player3, string player4) {
     while (true) {
         cout << ":::::::::::::::::\n";
-        cout << "select X,x or O,o \n";
+        cout << "select X or O \n";
         cout << ":::::::::::::::::\n";
         cout << player3 << ":\n";
-
+        cin >> p;
         cout << player4 << ":\n";
         cin >> e;
 
@@ -93,7 +93,7 @@ void printBoard(char bgame[4][4]) {
                 cout << cyan << 'X' << RESET << " ";
 
             else if (bgame[i][j] == 'O')
-                cout << PURPLE << 'O' << RESET << " ";
+                cout << LIGHT_PURPLE << 'O' << RESET << " ";
 
             else
                 cout << bgame[i][j] << " ";

@@ -17,13 +17,18 @@ void initialVal(char board[7][7]) {
 
 //------------------PRINT BOARD-------------------------
 void printBoard(char board[7][7]) {
-    cout << "1 + 2 + 3 + 4 + 5 + 6 + 7" << '\n';
+    cout << " 1 + 2 + 3 + 4 + 5 + 6 + 7" << '\n';
     for (int i = 0; i < 7; i++) {
+        cout<<' ';
         for (int j = 0; j < 7; j++) {
-            cout << board[i][j];
+            if (board[i][j] != ' ') {
+                cout << (board[i][j]=='x'? LIGHT_YELLOW"X":PURPLE "O")<<RESET;
+            }
+            else cout<<board[i][j];
             if (j != 6)cout << " | ";
         }
-        if (i != 6)cout << "\n--+---+---+---+---+---+--\n";
+        if (i != 6)
+            cout << "\n---+---+---+---+---+---+---\n"<<RESET;
     }
     cout << '\n';
 }
@@ -72,7 +77,7 @@ bool CheckWin(char board[7][7]) {
 void playGame(char board[7][7]) {
     char currentPlayer, p1, p2;
     int currentCol, ColIdx, ward = 0;
-    cout << "\n-------------------< Start Game >-------------------\n";
+    cout <<YELLOW "\n-------------------< Start Game >-------------------\n"<<RESET;
     initialVal(board);
     cout << "Player 1, choose your symbol (X or O): ";
     p1 = GetSymbol();
@@ -88,15 +93,15 @@ void playGame(char board[7][7]) {
             if (!(cin >> currentCol)) {//if user enter anything another numbers
                 cin.clear();
                 cin.ignore(100, '\n');
-                cout << "Invalid input , Try again : \n";
+                cout <<red "Invalid input , Try again : \n"<<RESET;
                 continue;
             }
             cin.ignore(100, '\n');//it's a protective way to avoid errors if user enter more than one char or num
             ColIdx = currentCol - 1;
             if (currentCol > 7 || currentCol < 1) {
-                cout << "Invalid input , Try again : \n";
+                cout <<red "Invalid input , Try again : \n"<<RESET;
             } else if (!checkCell(board, currentPlayer, ColIdx)) {//check what is the nearest cell is empty in colum
-                cout << "Wrong ! try again :\n";
+                cout <<red "Wrong ! try again :\n"<<RESET;
             } else {
                 ward++;
                 break;
@@ -107,14 +112,16 @@ void playGame(char board[7][7]) {
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
-            cout << "--------------<  Player (" << currentPlayer << ") win   >--------------\n";
+            cout <<BG "--------------<  Player (" << currentPlayer << ") win   >--------------\n"<<RESET;
+            cout << "-------------------------------------------------\n";
             break;
         }
         if (ward == 49) {//if we reach to 49 turn and none win that's mean draw
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
-            cout << "-------------------<    Draw    >----------------\n";
+            cout <<red "-------------------<    Draw    >----------------\n"<<RESET;
+            cout << "-------------------------------------------------\n";
             break;
         }
         currentPlayer = (currentPlayer == p1 ? p2 : p1);//take turns between user automatically
