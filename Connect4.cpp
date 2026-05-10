@@ -66,28 +66,29 @@ bool CheckWin(char board[7][7]) {
                 return true;
         }
     }
-    // \ digonal
+    //  \ digonal
     for (int k = 3; k <= 9; k++) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 if (i + j == k) {
-                    int ptr = k - 3;
-                    for (int l = k - 1; l >= 0; l--) {
-                        if (board[k][ptr] == board[l][ptr + 1] &&
-                            board[k][ptr] == board[l - 1][ptr + 2] &&
-                            board[k][ptr] == board[l - 2][ptr + 3] &&
-                            board[k][ptr] != ' ')
-                            return true;
-                        if (l - 2 <= 0 || ptr + 3 >= 9)
-                            break;
-                        ptr++;
-                    }
+                    int g = max(i, j), s = min(i, j);
+
+                    if (board[g][s] == board[g - 1][s + 1] &&
+                        board[g][s] == board[g - 1][s + 2] &&
+                        board[g][s] == board[g - 2][s + 3] &&
+                        board[g][s] != ' ')
+                        return true;
+                    if (board[s][g] != ' ' &&
+                        board[s][g] == board[s + 1][g - 1] &&
+                        board[s][g] == board[s + 2][g - 2] &&
+                        board[s][g] == board[s + 3][g - 3])
+                        return true;
                 }
             }
         }
     }
 
-    // / digonal
+    //  digonal  /
     for (int k = 0; k <= 3; k++) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
@@ -120,7 +121,7 @@ void playGame(char board[7][7]) {
     initialVal(board);
     cout << "Player 1, choose your symbol (X or O): ";
     p1 = GetSymbol();
-    p2 = (p1 == 'x' ? 'o' : 'x');
+    p2 = (p1 == 'X' ? 'O' : 'X');
     cout << "Player 1 : ( " << p1 << " )            " << "Player 2 : ( " << p2 << " )\n";
     printBoard(board);
     currentPlayer = p1;
@@ -133,16 +134,16 @@ void playGame(char board[7][7]) {
                 //if user enter anything another numbers
                 cin.clear();
                 cin.ignore(100, '\n');
-                cout << red "Invalid input , Try again : \n" << RESET;
+                cout << red "Invalid Input , Try Again : \n" << RESET;
                 continue;
             }
             cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
             ColIdx = currentCol - 1;
             if (currentCol > 7 || currentCol < 1) {
-                cout << red "Invalid input , Try again : \n" << RESET;
+                cout << red "Invalid Input , Try Again : \n" << RESET;
             } else if (!checkCell(board, currentPlayer, ColIdx)) {
                 //check what is the nearest cell is empty in colum
-                cout << red "Wrong ! try again :\n" << RESET;
+                cout << red "Wrong ! Try Again :\n" << RESET;
             } else {
                 ward++;
                 break;
@@ -153,7 +154,7 @@ void playGame(char board[7][7]) {
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
-            cout << BG "--------------<  Player (" << currentPlayer << ") win   >--------------\n" << RESET;
+            cout << BG "--------------<   PLAYER (" << currentPlayer << ") WIN   >--------------\n" << RESET;
             cout << "-------------------------------------------------\n";
             break;
         }
@@ -162,7 +163,7 @@ void playGame(char board[7][7]) {
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
-            cout << red "-------------------<    Draw    >----------------\n" << RESET;
+            cout << red "-------------------<    DRAW    >----------------\n" << RESET;
             cout << "-------------------------------------------------\n";
             break;
         }
