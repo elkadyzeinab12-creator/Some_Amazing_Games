@@ -3,6 +3,6 @@
 #include <bits/stdc++.h>
 
 char GetSymbol ();
-int get_int_input(std::string prompt);
+int get_int_input(const std::string &prompt);
 
 #endif //SOME_AMAZING_GAMES_UTILS_H

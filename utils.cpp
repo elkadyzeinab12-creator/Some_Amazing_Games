@@ -20,7 +20,7 @@ char GetSymbol() {
     return currentPlayer;
 }
 
-int get_int_input(string prompt) {
+int get_int_input(const string &prompt) {
     int value;
     while (true) {
         cout << prompt;
@@ -34,3 +34,18 @@ int get_int_input(string prompt) {
         cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
     }
 }
+
+// int value;
+// string line;
+// while (true) {
+//     cout << prompt;
+//     getline(cin, line);
+//     stringstream ss(line);
+//     char extra;
+//
+//     if (ss >> value && !(ss >> extra)) {
+//         return value;
+//     }
+//
+//     cout << red << "Invalid input, please try Enter a number\n" << RESET;
+// }
