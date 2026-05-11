@@ -6,6 +6,13 @@
 
 using namespace std;
 
+//STRUCT CONTAIN ALL MEMBERS FOR ONE PLAYER
+struct player {
+    string name =" " ;
+    char symbol=' ';
+    int ward = 0;
+};
+
 //-----------------CLEAR BOARD--------------------------
 void initialVal(char board[7][7]) {
     for (int i = 0; i < 7; i++) {
@@ -115,30 +122,36 @@ bool CheckWin(char board[7][7]) {
 
 //-----------------------------PLAY GAME---------------------------------
 void playGame(char board[7][7]) {
-    char currentPlayer, p1, p2;
-    int currentCol, ColIdx, ward = 0;
+    player p1, p2;
     cout << YELLOW "\n-------------------< Start Game >-------------------\n" << RESET;
     initialVal(board);
-    cout << "Player 1, choose your symbol (X or O): ";
-    p1 = GetSymbol();
-    p2 = (p1 == 'X' ? 'O' : 'X');
-    cout << "Player 1 : ( " << p1 << " )            " << "Player 2 : ( " << p2 << " )\n\n";
+    // ENTER NAME OF PLAYER
+    cout << "Player 1,Please Enter Your Name :";
+    getline(cin , p1.name);
+    cout << "Player 2,Please Enter Your Name :";
+    getline(cin , p2.name);
+    //ENTER SYMBOL
+    cout << p1.name <<" Choose your symbol (X or O): ";
+    p1.symbol = GetSymbol();
+    p2.symbol = (p1.symbol == 'X' ? 'O' : 'X');
+    cout << p1.name << " ( " << p1.symbol << " )            " << p2.name << " ( " << p2.symbol << " )\n\n";
+
     printBoard(board);
-    currentPlayer = p1;
+    player *currentPlayer = &p1;
     while (true) {
-        cout << GREEN "Current Player ( " << currentPlayer << " )\n"<<RESET;
+        cout << GREEN "Current Player ( " << currentPlayer->name << " ) With Symbol ( "<<currentPlayer->symbol <<" )\n"<<RESET;
         //check valid col
         while (true) {
-            currentCol=get_int_input("Enter Colum (1 - 7):");  //if user enter anything another numbers
+            int currentCol=get_int_input("Enter Colum (1 - 7):");  //if user enter anything another numbers
 
-            ColIdx = currentCol - 1;
+            int ColIdx = currentCol - 1;
             if (currentCol > 7 || currentCol < 1) {
                 cout << red "Invalid Input , Try Again : \n" << RESET;
-            } else if (!checkCell(board, currentPlayer, ColIdx)) {
+            } else if (!checkCell(board, currentPlayer->symbol, ColIdx)) {
                 //check what is the nearest cell is empty in colum
                 cout << red "Wrong ! Try Again :\n" << RESET;
             } else {
-                ward++;
+                currentPlayer->ward++;
                 break;
             }
         }
@@ -147,11 +160,11 @@ void playGame(char board[7][7]) {
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";
-            cout << BG "--------------<   PLAYER (" << currentPlayer << ") WIN   >--------------\n" << RESET;
+            cout << BG "--------------<   PLAYER (" << currentPlayer->name << ") WIN   >--------------\n" << RESET;
             cout << "-------------------------------------------------\n";
             break;
         }
-        if (ward == 49) {
+        if (currentPlayer->ward == 49) {
             //if we reach to 49 turn and none win that's mean draw
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
@@ -160,7 +173,7 @@ void playGame(char board[7][7]) {
             cout << "-------------------------------------------------\n";
             break;
         }
-        currentPlayer = (currentPlayer == p1 ? p2 : p1); //take turns between user automatically
+        currentPlayer = (currentPlayer->symbol == p1.symbol ? &p2 : &p1); //take turns between user automatically
     }
 }
 
