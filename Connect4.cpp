@@ -88,14 +88,14 @@ bool CheckWin(char board[7][7]) {
                         board[g][s] == board[g - 2][s + 2] &&
                         board[g][s] == board[g - 3][s + 3] &&
                         board[g][s] != ' ') {
-                        cout<<"diagonal/\n";
+                        //cout<<"diagonal/\n";
                         return true;
                     }
                     if (board[s][g] != ' ' &&
                         board[s][g] == board[s + 1][g - 1] &&
                         board[s][g] == board[s + 2][g - 2] &&
                         board[s][g] == board[s + 3][g - 3]) {
-                        cout<<"diagonal/\n";
+                       // cout<<"diagonal/\n";
                         return true;
                     }
                 }
@@ -114,14 +114,14 @@ bool CheckWin(char board[7][7]) {
                         board[g][s] == board[g + 1][s + 1] &&
                         board[g][s] == board[g + 2][s + 2] &&
                         board[g][s] == board[g + 3][s + 3]) {
-                        cout<<"diagonal\\\n";
+                       // cout<<"diagonal\\\n";
                         return true;
                     }
                     if (board[s][g] != ' ' &&
                         board[s][g] == board[s + 1][g + 1] &&
                         board[s][g] == board[s + 2][g + 2] &&
                         board[s][g] == board[s + 3][g + 3]) {
-                        cout<<"diagonal\\\n";
+                        //cout<<"diagonal\\\n";
                         return true;
                     }
                 }

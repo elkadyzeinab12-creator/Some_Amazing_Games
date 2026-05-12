@@ -195,8 +195,8 @@ void GameOver() {
     cout << GREEN <<"::::::::::::::::::\n"
     << "BOARD GAME\n::::::::::::::::::\n\n" << RESET;
 
-    char boardgame[4][4];
-    initializeBoard(boardgame);
+    char game_board[4][4];
+    initializeBoard(game_board);
 cout <<"\n";
     char y, d;
     selection(y, d, player1, player2);
@@ -207,23 +207,23 @@ cout <<"\n";
         //player1 section
 
         int row1, col1;
-        set_position(row1, col1, player1, boardgame);
-        boardgame[row1][col1] = y;
+        set_position(row1, col1, player1, game_board);
+        game_board[row1][col1] = y;
 
 
-        printBoard(boardgame);
-        if (!win_lose_draw(player2, player1, boardgame, y))
+        printBoard(game_board);
+        if (!win_lose_draw(player2, player1, game_board, y))
             break;
 
           //player2 section
 
         int row2, col2;
-        set_position(row2, col2, player2, boardgame);
-        boardgame[row2][col2] = d;
+        set_position(row2, col2, player2, game_board);
+        game_board[row2][col2] = d;
 
 
-        printBoard(boardgame);
-        if (!win_lose_draw(player1, player2, boardgame, d))
+        printBoard(game_board);
+        if (!win_lose_draw(player1, player2, game_board, d))
             break;
     }
 }

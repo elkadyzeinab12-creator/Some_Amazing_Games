@@ -31,8 +31,21 @@ int get_int_input(const string &prompt) {
         cout<<red<<"Invalid Input, Please Try Enter An Integer Number\n"<<RESET;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
     }
+}
+
+void showWinMessage(const string &playerName) {
+    string message = "  CONGRATULATIONS! PLAYER (" + playerName + ") WINS!  ";
+    int n = message.length();
+
+    cout << "\t\t ";
+    for (int i = 0; i < n; i++) cout <<BLUE "*";
+
+    cout << "\n\t\t "<<BG << message <<RESET " ";
+
+    cout << "\n\t\t ";
+    for (int i = 0; i < n; i++) cout << BLUE"*"<<RESET;
+    cout<<"\n";
 }
 
 // int value;

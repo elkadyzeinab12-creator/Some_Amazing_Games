@@ -17,7 +17,7 @@ void colors_organization() {
     GetConsoleMode(hOut, &dwMode);
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
-#endif
+   #endif
 }
 
 
@@ -92,7 +92,6 @@ void main_loop() {
                 break;
             default:
                 cout << red << "Invalid Input!\nPlease Enter 1 Or 2 To start Gaming Or Press 0 to terminate\n" << RESET;
-                cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
         }
     }
     cout << MAGENTAd << "                  WE WISH YOU ENJOYED OUR GAMES!\n     "
