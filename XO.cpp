@@ -112,7 +112,7 @@ void printBoard(char game_board[4][4]) {
 
 //checking who is the winner
 bool checkWin(char player, char game_board[4][4]) {
-    //Vertical
+    //Horizontal
     for (int i = 0; i < 4; i++) {
         if (game_board[i][0] == player &&
             game_board[i][1] == player &&
@@ -120,7 +120,7 @@ bool checkWin(char player, char game_board[4][4]) {
             game_board[i][3] == player)
             return true;
     }
-    //Horizontal
+    //Vertical
     for (int j = 0; j < 4; j++) {
         if (game_board[0][j] == player &&
             game_board[1][j] == player &&
