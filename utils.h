@@ -3,6 +3,14 @@
 #include <bits/stdc++.h>
 
 char GetSymbol ();
-int get_int_input(std::string prompt);
+int get_int_input(const std::string &prompt);
+void showWinMessage(const std:: string &playerName);
+inline void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
 
 #endif //SOME_AMAZING_GAMES_UTILS_H

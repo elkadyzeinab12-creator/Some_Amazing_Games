@@ -55,7 +55,7 @@ void selection(char &p, char &e, string player1, string player2) {
 }
 
 //sara's function to check accuracy and deal with wrong input
-bool checkAccuracy(int row, int col, char game_board[4][4]) {
+bool checkAccuracy(const int &row, const int &col, char game_board[4][4]) {
     if (row < 0 || row > 3 || col < 0 || col > 3) {
         cout << red << "Outside the game area!\n" << RESET;
         return false;
@@ -70,7 +70,7 @@ bool checkAccuracy(int row, int col, char game_board[4][4]) {
 }
 
 //rows and columns function to allows user select the position of the cell
-void set_position(int &row, int &col, string player, char game_board[4][4]) {
+void set_position(int &row, int &col, const string &player, char game_board[4][4]) {
     while (true) {
         cout << GREEN << player << "'s turn!\n" << RESET;
         cout << player << " Enter row and column numbers : \n";
