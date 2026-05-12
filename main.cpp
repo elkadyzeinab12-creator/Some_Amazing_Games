@@ -17,7 +17,7 @@ void colors_organization() {
     GetConsoleMode(hOut, &dwMode);
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
-   #endif
+#endif
 }
 
 
@@ -40,8 +40,8 @@ int main() {
     main_loop();
 
     cout <<YELLOW<<"\n--------------------------------------------------------------------------------------------------\n"
-        "     < THIS IS THE FIRST VERSION OF THE APPLICATION AND IT WILL BE UPDATED SOON! >        \n"
-    "--------------------------------------------------------------------------------------------------\n";
+                   "            < THIS IS THE FIRST VERSION OF THE APPLICATION AND IT WILL BE UPDATED SOON! >          "
+                   "\n--------------------------------------------------------------------------------------------------\n";
 
     return 0;
 }
@@ -67,8 +67,7 @@ void XO() {
 void Connect4() {
     int press = -1;
     while (press != 0) {
-        char board[7][7];
-        playGame(board);
+        playGame();
         press = get_int_input("Press Any Number Kay To Continue Plying Or Press 0 To Return To The Main Menu... ");
     }
 }
@@ -94,8 +93,8 @@ void main_loop() {
                 cout << red << "Invalid Input!\nPlease Enter 1 Or 2 To start Gaming Or Press 0 to terminate\n" << RESET;
         }
     }
-    cout << MAGENTAd << "                  WE WISH YOU ENJOYED OUR GAMES!\n     "
-                        "                  LET ME SEE YOU AGAIN\n";
+    cout << MAGENTAd << "                               WE WISH YOU ENJOYED OUR GAMES!\n     "
+                        "                               LET ME SEE YOU AGAIN\n";
 
 }
 /*____________________________________< the end >______________________________________*/
