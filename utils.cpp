@@ -34,31 +34,5 @@ int get_int_input(const string &prompt) {
     }
 }
 
-void showWinMessage(const string &playerName) {
-    string message = "  CONGRATULATIONS! PLAYER (" + playerName + ") WINS!  ";
-    int n = message.length();
 
-    cout << "\t\t ";
-    for (int i = 0; i < n; i++) cout <<BLUE "*";
 
-    cout << "\n\t\t "<<BG << message <<RESET " ";
-
-    cout << "\n\t\t ";
-    for (int i = 0; i < n; i++) cout << BLUE"*"<<RESET;
-    cout<<"\n";
-}
-
-// int value;
-// string line;
-// while (true) {
-//     cout << prompt;
-//     getline(cin, line);
-//     stringstream ss(line);
-//     char extra;
-//
-//     if (ss >> value && !(ss >> extra)) {
-//         return value;
-//     }
-//
-//     cout << red << "Invalid input, please try Enter a number\n" << RESET;
-// }

@@ -1,6 +1,5 @@
 #ifndef SOME_AMAZING_GAMES_CONNECT4_H
 #define SOME_AMAZING_GAMES_CONNECT4_H
-#include<string>
 
 bool CheckWin(char arr[7][7]);
 
