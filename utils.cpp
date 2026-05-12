@@ -31,6 +31,6 @@ int get_int_input(string prompt) {
         cout<<red<<"Invalid Input, Please Try Enter An Integer Number\n"<<RESET;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
+        //cin.ignore(100, '\n'); //it's a protective way to avoid errors if user enter more than one char or num
     }
 }
