@@ -4,6 +4,5 @@
 
 char GetSymbol ();
 int get_int_input(const std::string &prompt);
-void showWinMessage(const std:: string &playerName);
 
 #endif //SOME_AMAZING_GAMES_UTILS_H

@@ -10,6 +10,7 @@ char GetSymbol() {
             cin.clear();
         }
         cin.ignore(100,'\n');//if user enter more than one char to avoid crash x123 or 123
+        // and if it don't see any error it sees enter and stop
         currentPlayer = toupper(currentPlayer);
         if (currentPlayer == 'X' || currentPlayer == 'O') {
             break;
