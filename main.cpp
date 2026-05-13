@@ -1,4 +1,3 @@
-#define _HAS_STD_BYTE 0
 #include <bits/stdc++.h>
 #include "utils.h"
 #include "colors.h"
