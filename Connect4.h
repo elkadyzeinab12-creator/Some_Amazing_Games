@@ -1,13 +1,13 @@
 #ifndef SOME_AMAZING_GAMES_CONNECT4_H
 #define SOME_AMAZING_GAMES_CONNECT4_H
 
-bool CheckWin(char arr[7][7]);
+bool CheckWin();
 
-void initialVal(char board[7][7]);
+void initialVal();
 
-void printBoard(char board[7][7]);
+void printBoard();
 
-bool checkCell(char board[7][7], char c, int col);
+bool checkCell(char c, int col);
 
 void playGame();
 #endif //SOME_AMAZING_GAMES_CONNECT4_H

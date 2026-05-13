@@ -8,9 +8,9 @@ char GetSymbol() {
     while (true) {
         if (!(cin >> currentPlayer)) {
             cin.clear();
-            cin.ignore(100, '\n');
         }
-        cin.ignore(100,'\n');//if user enter more than one char to avoid crash
+        cin.ignore(100,'\n');//if user enter more than one char to avoid crash x123 or 123
+        // and if it don't see any error it sees enter and stop
         currentPlayer = toupper(currentPlayer);
         if (currentPlayer == 'X' || currentPlayer == 'O') {
             break;
@@ -33,32 +33,3 @@ int get_int_input(const string &prompt) {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 }
-
-void showWinMessage(const string &playerName) {
-    string message = "  CONGRATULATIONS! PLAYER (" + playerName + ") WINS!  ";
-    int n = message.length();
-
-    cout << "\t\t ";
-    for (int i = 0; i < n; i++) cout <<BLUE "*";
-
-    cout << "\n\t\t "<<BG << message <<RESET " ";
-
-    cout << "\n\t\t ";
-    for (int i = 0; i < n; i++) cout << BLUE"*"<<RESET;
-    cout<<"\n";
-}
-
-// int value;
-// string line;
-// while (true) {
-//     cout << prompt;
-//     getline(cin, line);
-//     stringstream ss(line);
-//     char extra;
-//
-//     if (ss >> value && !(ss >> extra)) {
-//         return value;
-//     }
-//
-//     cout << red << "Invalid input, please try Enter a number\n" << RESET;
-// }
