@@ -6,7 +6,7 @@ using namespace std;
 
 //initializing board by '-' character
 void initializeBoard(char game_board[4][4]) {
-    cout << "    0   1   2   3\n";
+    cout << "    1   2   3   4\n";
     cout << YELLOW << "  -----------------\n" << RESET;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -16,7 +16,7 @@ void initializeBoard(char game_board[4][4]) {
 
 
     for (int i = 0; i < 4; i++) {
-        cout << RESET << i << " ";
+        cout << RESET << i + 1 << " ";
         cout << YELLOW << "| ";
         for (int j = 0; j < 4; j++) {
             cout << RESET << game_board[i][j] << YELLOW << " | ";
@@ -29,28 +29,13 @@ void initializeBoard(char game_board[4][4]) {
 
 //the loop of the game starts
 void selection(char &p, char &e, const string &player1, const string &player2) {
-    while (true) {
-        cout << GREEN << ":::::::::::::::::\n" << RESET;
-        cout << "select X or O \n";
-        cout << GREEN << ":::::::::::::::::\n" << RESET;
-        cout << player1 << ":\n";
-        cin >> p;
-        p = toupper(p);
-        cout << player2 << ":\n";
-        cin >> e;
-        e = toupper(e);
-
-        if (!((p == 'X' || p == 'O') && (e == 'X' || e == 'O'))) {
-            cout << red << "wrong input!\n" << RESET;
-            cout << red << "please try again.\n" << RESET;
-            cout << "===============================\n";
-        } else if (p == e) {
-            cout << red << "the players can't choose the same symbols.\n" << RESET;
-            cout << red << "please try again.\n" << RESET;
-            cout << "===============================\n";
-        } else
-            break;
-    }
+    cout << GREEN << ":::::::::::::::::\n" << RESET;
+    cout << "select X or O \n";
+    cout << GREEN << ":::::::::::::::::\n" << RESET;
+    cout << player1 << ":\n";
+    p = GetSymbol();
+    e = (p == 'X' ? 'O' : 'X');
+    cout << GREEN << player2 << "! you will play with :" << e << '\n' << RESET;
     cout << "=================================\n";
 }
 
@@ -76,7 +61,9 @@ void set_position(int &row, int &col, const string &player, char game_board[4][4
         cout << player << " Enter row and column numbers : \n";
         cout << "_________________________________________\n";
         row = get_int_input("Enter the row number: ");
+        row--;
         col = get_int_input("Enter the column number: ");
+        col--;
 
         if (!checkAccuracy(row, col, game_board)) {
             cout << red << "please try again.\n" << RESET;
@@ -88,11 +75,11 @@ void set_position(int &row, int &col, const string &player, char game_board[4][4
 
 //the most sensitive part _printing the nice board_
 void printBoard(char game_board[4][4]) {
-    cout << "    0   1   2   3\n";
+    cout << "    1   2   3   4\n";
     cout << YELLOW << "  -----------------\n" << RESET;
 
     for (int i = 0; i < 4; i++) {
-        cout << i << " ";
+        cout << i + 1 << " ";
         for (int j = 0; j < 4; j++) {
             cout << YELLOW << "| " << RESET;
             if (game_board[i][j] == 'X')
