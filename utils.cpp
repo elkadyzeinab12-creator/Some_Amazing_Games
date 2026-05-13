@@ -8,9 +8,8 @@ char GetSymbol() {
     while (true) {
         if (!(cin >> currentPlayer)) {
             cin.clear();
-            cin.ignore(100, '\n');
         }
-        cin.ignore(100,'\n');//if user enter more than one char to avoid crash
+        cin.ignore(100,'\n');//if user enter more than one char to avoid crash x123 or 123
         currentPlayer = toupper(currentPlayer);
         if (currentPlayer == 'X' || currentPlayer == 'O') {
             break;
