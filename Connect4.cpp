@@ -54,64 +54,37 @@ bool checkCell(char board[7][7], char c, int col) {
 bool CheckWin(char board[7][7]) {
     //Horizontal
     for (int i = 0; i < 7; i++) {
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < 7; j++) {
             if (board[i][j] != ' ' &&
                 board[i][j] == board[i][j + 1] &&
                 board[i][j] == board[i][j + 2] &&
-                board[i][j] == board[i][j + 3])
+                board[i][j] == board[i][j + 3]) {
+                // cout<<"horizontal\n";
                 return true;
-        }
-    }
-    //Vertical
-    for (int j = 0; j < 7; j++) {
-        for (int i = 0; i < 4; i++) {
+            }
+            //Vertical
             if (board[i][j] != ' ' &&
                 board[i][j] == board[i + 1][j] &&
                 board[i][j] == board[i + 2][j] &&
-                board[i][j] == board[i + 3][j])
+                board[i][j] == board[i + 3][j]) {
+                //cout<<"vertical\n";
                 return true;
-        }
-    }
-    //  \ digonal
-    for (int k = 3; k <= 9; k++) {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (i + j == k) {
-                    int g = max(i, j), s = min(i, j);
-
-                    if (board[g][s] == board[g - 1][s + 1] &&
-                        board[g][s] == board[g - 1][s + 2] &&
-                        board[g][s] == board[g - 2][s + 3] &&
-                        board[g][s] != ' ')
-                        return true;
-                    if (board[s][g] != ' ' &&
-                        board[s][g] == board[s + 1][g - 1] &&
-                        board[s][g] == board[s + 2][g - 2] &&
-                        board[s][g] == board[s + 3][g - 3])
-                        return true;
-                }
             }
-        }
-    }
-
-    //  digonal  /
-    for (int k = 0; k <= 3; k++) {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (abs(i - j) == k) {
-                    int g = max(i, j), s = min(i, j);
-
-                    if (board[g][s] != ' ' &&
-                        board[g][s] == board[g + 1][s + 1] &&
-                        board[g][s] == board[g + 2][s + 2] &&
-                        board[g][s] == board[g + 3][s + 3])
-                        return true;
-                    if (board[s][g] != ' ' &&
-                        board[s][g] == board[s + 1][g + 1] &&
-                        board[s][g] == board[s + 2][g + 2] &&
-                        board[s][g] == board[s + 3][g + 3])
-                        return true;
-                }
+            //  / digonal
+            if (board[i][j] != ' ' && j>=3 &&
+                board[i][j] == board[i + 1][j - 1] &&
+                board[i][j] == board[i + 2][j - 2] &&
+                board[i][j] == board[i + 3][j - 3]) {
+                // cout<<"diagonal/ \n";
+                return true;
+            }
+            // \ digonal
+            if (board[i][j] != ' ' &&
+                board[i][j] == board[i + 1][j + 1] &&
+                board[i][j] == board[i + 2][j + 2] &&
+                board[i][j] == board[i + 3][j + 3]) {
+                // cout<<"diagonal\\ \n";
+                return true;
             }
         }
     }
@@ -154,7 +127,7 @@ void playGame() {
                 cout << red "Invalid Input , Try Again : \n" << RESET;
             } else if (!checkCell(board, currentPlayer->symbol, ColIdx)) {
                 //check what is the nearest cell is empty in colum
-                cout << red "Wrong ! Try Again :\n" << RESET;
+                cout << red "Wrong ! THIS COLUMN IS ALREADY FULL, Try Again :\n" << RESET;
             } else {
                 ward++;
                 break;

@@ -28,7 +28,7 @@ void initializeBoard(char game_board[4][4]) {
 }
 
 //the loop of the game starts
-void selection(char &p, char &e, const  string & player1, const string & player2) {
+void selection(char &p, char &e, const string &player1, const string &player2) {
     while (true) {
         cout << GREEN << ":::::::::::::::::\n" << RESET;
         cout << "select X or O \n";
@@ -155,7 +155,7 @@ bool checkDraw(char game_board[4][4]) {
 }
 
 //display the winner
-bool win_lose_draw(const string &player1,const string & player2, char game_board[4][4], char p) {
+bool win_lose_draw(const string &player1, const string &player2, char game_board[4][4], char p){
     if (checkWin(p, game_board)) {
         cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
         cout << BG << "                    " << player2 << " " << "IS THE WINNER \n" << RESET;
