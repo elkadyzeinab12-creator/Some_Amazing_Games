@@ -3,8 +3,9 @@
 #include "utils.h"
 #include "colors.h"
 
-
 using namespace std;
+
+char board[7][7];
 
 //STRUCT CONTAIN ALL MEMBERS FOR ONE PLAYER
 struct player {
@@ -13,7 +14,7 @@ struct player {
 };
 
 //-----------------CLEAR BOARD--------------------------
-void initialVal(char board[7][7]) {
+void initialVal() {
     for (int i = 0; i < 7; i++) {
         for (int j = 0; j < 7; j++) {
             board[i][j] = ' ';
@@ -22,7 +23,7 @@ void initialVal(char board[7][7]) {
 }
 
 //------------------PRINT BOARD-------------------------
-void printBoard(char board[7][7]) {
+void printBoard() {
     cout << " 1 + 2 + 3 + 4 + 5 + 6 + 7" << RESET << '\n';
     for (int i = 0; i < 7; i++) {
         cout << ' ';
@@ -40,7 +41,7 @@ void printBoard(char board[7][7]) {
 
 //--------------------CHECK CELL-------------------------
 //WHAT IS THE FIRST EMPTY CELL ?
-bool checkCell(char board[7][7], char c, int col) {
+bool checkCell(char c, int col) {
     for (int i = 6; i >= 0; i--) {
         if (board[i][col] == ' ') {
             board[i][col] = c;
@@ -51,39 +52,35 @@ bool checkCell(char board[7][7], char c, int col) {
 }
 
 //----------------------CHECK WIN--------------------------
-bool CheckWin(char board[7][7]) {
-    //Horizontal
+bool CheckWin() {
     for (int i = 0; i < 7; i++) {
         for (int j = 0; j < 7; j++) {
-            if (board[i][j] != ' ' &&
+            //Horizontal
+            if (board[i][j] != ' ' && j <= 3 &&
                 board[i][j] == board[i][j + 1] &&
                 board[i][j] == board[i][j + 2] &&
                 board[i][j] == board[i][j + 3]) {
-                // cout<<"horizontal\n";
                 return true;
             }
             //Vertical
-            if (board[i][j] != ' ' &&
+            if (board[i][j] != ' ' && i <= 3 &&
                 board[i][j] == board[i + 1][j] &&
                 board[i][j] == board[i + 2][j] &&
                 board[i][j] == board[i + 3][j]) {
-                //cout<<"vertical\n";
                 return true;
             }
             //  / digonal
-            if (board[i][j] != ' ' && j>=3 &&
+            if (board[i][j] != ' ' && j >= 3 && i <= 3 &&
                 board[i][j] == board[i + 1][j - 1] &&
                 board[i][j] == board[i + 2][j - 2] &&
                 board[i][j] == board[i + 3][j - 3]) {
-                // cout<<"diagonal/ \n";
                 return true;
             }
             // \ digonal
-            if (board[i][j] != ' ' &&
+            if (board[i][j] != ' ' && j <= 3 && i <= 3 &&
                 board[i][j] == board[i + 1][j + 1] &&
                 board[i][j] == board[i + 2][j + 2] &&
                 board[i][j] == board[i + 3][j + 3]) {
-                // cout<<"diagonal\\ \n";
                 return true;
             }
         }
@@ -94,11 +91,10 @@ bool CheckWin(char board[7][7]) {
 
 //-----------------------------PLAY GAME---------------------------------
 void playGame() {
-    char board[7][7];
     int ward = 0;
     player p1, p2;
     cout << YELLOW "\n-------------------< Start Game >-------------------\n" << RESET;
-    initialVal(board);
+    initialVal();
     // ENTER NAME OF PLAYER
     cout << "Player 1,Please Enter Your Name :";
     getline(cin, p1.name);
@@ -113,7 +109,7 @@ void playGame() {
             PURPLE << "            VS              " << RESET
             << p2.name << " ( " << p2.symbol << " )\n";
 
-    printBoard(board);
+    printBoard();
     player *currentPlayer = &p1;
     while (true) {
         cout << GREEN "Current Player ( " << currentPlayer->name << " ) With Symbol ( " << currentPlayer->symbol <<
@@ -125,7 +121,7 @@ void playGame() {
             int ColIdx = currentCol - 1;
             if (currentCol > 7 || currentCol < 1) {
                 cout << red "Invalid Input , Try Again : \n" << RESET;
-            } else if (!checkCell(board, currentPlayer->symbol, ColIdx)) {
+            } else if (!checkCell(currentPlayer->symbol, ColIdx)) {
                 //check what is the nearest cell is empty in colum
                 cout << red "Wrong ! THIS COLUMN IS ALREADY FULL, Try Again :\n" << RESET;
             } else {
@@ -133,8 +129,8 @@ void playGame() {
                 break;
             }
         }
-        printBoard(board);
-        if (CheckWin(board)) {
+        printBoard();
+        if (CheckWin()) {
             cout << "-------------------------------------------------\n";
             cout << "                     GAME OVER                    \n";
             cout << "-------------------------------------------------\n";

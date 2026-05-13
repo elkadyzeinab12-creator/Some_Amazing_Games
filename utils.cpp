@@ -33,6 +33,3 @@ int get_int_input(const string &prompt) {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 }
-
-
-

@@ -10,7 +10,7 @@
 using namespace std;
 
 void colors_organization() {
-    #ifdef _WIN32
+#ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
     GetConsoleMode(hOut, &dwMode);
@@ -20,13 +20,13 @@ void colors_organization() {
 }
 
 
-void main_menu();//done
+void main_menu(); //done
 
-void main_loop();//done
+void main_loop(); //done
 
-void XO();//done
+void XO(); //done
 
-void Connect4();//done
+void Connect4(); //done
 
 
 // the main
@@ -38,9 +38,10 @@ int main() {
 
     main_loop();
 
-    cout <<YELLOW<<"\n--------------------------------------------------------------------------------------------------\n"
-                   "            < THIS IS THE FIRST VERSION OF THE APPLICATION AND IT WILL BE UPDATED SOON! >          "
-                   "\n--------------------------------------------------------------------------------------------------\n";
+    cout << YELLOW <<
+            "\n--------------------------------------------------------------------------------------------------\n"
+            "            < THIS IS THE FIRST VERSION OF THE APPLICATION AND IT WILL BE UPDATED SOON! >          "
+            "\n--------------------------------------------------------------------------------------------------\n";
 
     return 0;
 }
@@ -50,8 +51,8 @@ void main_menu() {
     cout << BB << "==========================================================\n";
     cout << "Main Menu:\n";
     cout << "1. XO Game\n" // done
-    << "2. Connect4 Game\n" // still working on
-    << "0. Exit\n";
+            << "2. Connect4 Game\n" // still working on
+            << "0. Exit\n";
     cout << "---------------------------------------------\n" << RESET;
 }
 
@@ -93,7 +94,7 @@ void main_loop() {
         }
     }
     cout << MAGENTAd << "                               WE WISH YOU ENJOYED OUR GAMES!\n     "
-                        "                               LET ME SEE YOU AGAIN\n";
-
+            "                               LET ME SEE YOU AGAIN\n";
 }
+
 /*____________________________________< the end >______________________________________*/
