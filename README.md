@@ -20,9 +20,9 @@ Reem Hassan:
 
 Lead Logic Developer for the XO game engine.
 
-Malak Hesham:
+Malak Hesham Foaad:
 
-Implementing the 4x4 winning condition algorithms.
+Implementing the 4x4 winning condition algorithms and chick draw.
 
 Sara Eid:
 
